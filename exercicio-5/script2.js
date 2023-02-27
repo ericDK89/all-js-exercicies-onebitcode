@@ -1,42 +1,40 @@
 let moneyAmountAvailable = Number(prompt("Quanto dinheiro tem disponível?"));
-let exit = false;
+let options = "";
 
 do {
-  let options = confirm(
-    `Você tem R$${moneyAmountAvailable} disponível, gostaria de adicionar mais dinheiro?`
+  options = Number(
+    prompt(`
+    Você tem R$${moneyAmountAvailable} disponível.
+  
+    Selecione uma das opções:
+    1. Adicionar
+    2. Remover
+    3. Encerrar
+  `)
   );
 
-  while (options) {
-    const addMoreMoney = Number(
-      prompt("Quanto dinheiro a mais quer adicionar?")
-    );
-    moneyAmountAvailable += addMoreMoney;
-    options = confirm(
-      `Você tem R$${moneyAmountAvailable} disponível, gostaria de adicionar mais dinheiro?`
-    );
+  switch (options) {
+    case 1:
+      const addMoney = Number(
+        prompt("Quanto de dinheiro gostaria de adicionar?")
+      );
+      moneyAmountAvailable += addMoney;
+      break;
+
+    case 2:
+      const removeMoney = Number(
+        prompt("Quanto de dinheiro gostaria de adicionar?")
+      );
+      moneyAmountAvailable -= removeMoney;
+      break;
+
+    case 3:
+      alert("Encerrando...");
+      options = 3;
+      break;
+
+    default:
+      alert("Opção inválida!");
+      break;
   }
-
-  if (!options) {
-    const wishToRemoveMoney = confirm("Gostaria de remover dinheiro?");
-
-    while (wishToRemoveMoney) {
-      const removeMoreMoney = Number(
-        prompt("Quanto de dinheiro gostaria de remover?")
-      );
-      moneyAmountAvailable -= removeMoreMoney;
-      wishToRemoveMoney = confirm(
-        `Você tem R$${moneyAmountAvailable}, gostaria de continuar removendo dinheiro?`
-      );
-    }
-
-    if (!wishToRemoveMoney) {
-      exit = confirm("Você gostaria de encerrar a aplicação?");
-    }
-
-    if (!exit) {
-      options = confirm(
-        `Você tem R$${moneyAmountAvailable} disponível, gostaria de adicionar mais dinheiro?`
-      );
-    }
-  }
-} while (!exit);
+} while (options !== 3);
