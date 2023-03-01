@@ -1,14 +1,10 @@
 let number = Number(prompt("De qual número gostaria de ver a tabuada?"));
-let multiplier = 1;
 let multiplicationTable = [];
 let result = 0;
 
-for (number; multiplier <= 20; multiplier++) {
+for (let multiplier = 1; multiplier <= 20; multiplier++) {
   result = number * multiplier;
-  multiplicationTable.push(result);
-  alert(`${number} x ${multiplier} = ${result}`);
+  multiplicationTable.push(`${number} x ${multiplier} = ${result} \n`);
 }
 
-alert(`Tabuada do ${number}: 
-  ${multiplicationTable.join("\n")}
-`);
+alert(`Resultado da tabuada do ${number}:\n\n ${multiplicationTable.join("")}`);
