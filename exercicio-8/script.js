@@ -1,16 +1,10 @@
 let properties = [];
-let propertiesAmount = 0;
-let newProperty = {};
 let options = 0;
-let propertyName = "";
-let roomsAmount = 0;
-let bathRoomsAmount = 0;
-let hasGarage = "";
 
 do {
-  options = Number(
+  let options = Number(
     prompt(`
-  Quantidade de imóveis cadastrados: ${propertiesAmount}
+  Quantidade de imóveis cadastrados: ${properties.length}
 
   Selecione uma das opções abaixo: 
 
@@ -22,23 +16,35 @@ do {
 
   switch (options) {
     case 1:
-      propertyName = prompt("Insira o nome da propriedade.");
-      roomsAmount = Number(prompt("Insira a quantidade de quartos."));
-      bathRoomsAmount = Number(prompt("Insira a quantidade de banheiros."));
-      hasGarage = prompt(
-        "A propriedade possui uma garagem? (S/N)"
-      ).toLocaleUpperCase();
+      let propertyName = prompt("Insira o nome da propriedade.");
+      let roomsAmount = Number(prompt("Insira a quantidade de quartos."));
+      let bathRoomsAmount = Number(prompt("Insira a quantidade de banheiros."));
+      let hasGarage = confirm(
+        "O imóvel possui garagem? \n OK para sim. Cancelar para Não."
+      );
 
-      newProperty = {
-        name: propertyName,
-        rooms: roomsAmount,
-        bathRooms: bathRoomsAmount,
-        hasGarage: hasGarage === "S" ? true : false,
-      };
+      const finishPropertyCreation = confirm(`
+        Tem certeza que deseja criar esse imóvel?
 
-      properties.push(newProperty);
-      propertiesAmount++;
-      break;
+        Nome da propriedade: ${propertyName} 
+        Quantidade de quartos: ${roomsAmount}
+        Quantidade de banheiros: ${bathRoomsAmount}
+        Possui garagem: ${hasGarage === true ? "Sim" : "Não"}
+      `);
+
+      if (finishPropertyCreation) {
+        let newProperty = {
+          name: propertyName,
+          rooms: roomsAmount,
+          bathRooms: bathRoomsAmount,
+          hasGarage: hasGarage,
+        };
+
+        properties.push(newProperty);
+        break;
+      } else {
+        break;
+      }
 
     case 2:
       alert(`
