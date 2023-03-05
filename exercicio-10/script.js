@@ -68,7 +68,7 @@ const createANewVacancy = () => {
 
 //View a vacancy function
 
-const viewAVacancyFunction = () => {
+const viewAVacancy = () => {
   const vacancyIndex = Number(prompt("Qual o índice da vaga?"));
 
   alert(`
@@ -173,7 +173,7 @@ do {
       break;
 
     case 3:
-      viewAVacancyFunction();
+      viewAVacancy();
       break;
 
     case 4:
