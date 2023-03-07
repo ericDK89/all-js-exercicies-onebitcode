@@ -9,41 +9,61 @@
   <body>
     <h1>Exercício 11</h1>
 
-    <label for="player-position">Posição do jogador:</label>
-    <input type="text" name="player-position" id="player-position" required />
-
+    <hr />
     <br />
 
-    <label for="player-name">Nome do jogador:</label>
-    <input type="text" name="player-name" id="player-name" required />
+    <div>
+      <label for="player-position">Posição do jogador:</label>
+      <input type="text" name="player-position" id="player-position" />
 
+      <br />
+
+      <label for="player-name">Nome do jogador:</label>
+      <input type="text" name="player-name" id="player-name" />
+
+      <br />
+
+      <label for="player-number">Número da camisa do jogador:</label>
+      <input
+        type="number"
+        name="player-number"
+        id="player-number"
+        min="0"
+        max="999"
+      />
+
+      <br />
+
+      <button
+        type="button"
+        id="create-new-player-btn"
+        onclick="createNewPlayer()"
+      >
+        Escalar
+      </button>
+    </div>
+
+    <hr />
     <br />
 
-    <label for="player-number">Número da camisa do jogador:</label>
+    <label for="remove-player-number"
+      >Número da camisa do jogador para remover:</label
+    >
     <input
       type="number"
-      name="player-number"
-      id="player-number"
+      name="remove-player-number"
+      id="remove-player-number"
       min="0"
       max="999"
-      required
     />
-
-    <br />
-
-    <button
-      type="button"
-      id="create-new-player-btn"
-      onclick="createNewPlayer()"
-    >
-      Escalar
-    </button>
 
     <button id="remove-player-btn" type="button" onclick="removePlayer()">
       Remover jogador
     </button>
-
+    <hr />
     <br />
+
+    <h2>Lista de jogadores</h2>
 
     <ul id="escalation-list"></ul>
 

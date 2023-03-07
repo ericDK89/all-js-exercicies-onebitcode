@@ -1,4 +1,4 @@
-const escalationArray = [
+let escalationArray = [
   {
     position: "Ponta esquerda",
     name: "Vini Jr.",
@@ -6,17 +6,14 @@ const escalationArray = [
   },
 ];
 
-let playerPosition;
-let playerName;
-let playerNumber;
-
 const escalationUlList = document.getElementById("escalation-list");
 
 const playerPositionInput = document.getElementById("player-position");
 const playerNameInput = document.getElementById("player-name");
 const playerNumberInput = document.getElementById("player-number");
-
 const createNewPlayerBtn = document.getElementById("create-new-player-btn");
+
+const removePlayerInput = document.getElementById("remove-player-number");
 const removePlayerBtn = document.getElementById("remove-player-btn");
 
 const createEscalationUlList = () => {
@@ -35,50 +32,55 @@ const createEscalationUlList = () => {
     .join("");
 };
 
-createEscalationUlList();
-
 const createNewPlayer = () => {
-  playerPosition = playerPositionInput.value;
-  playerName = playerNameInput.value;
-  playerNumber = playerNumberInput.value;
-
-  const confirmNewPlayerCreation = confirm("Deseja criar um novo jogador?");
-
-  if (!confirmNewPlayerCreation) {
-    playerNumberInput.value = "";
-    playerPositionInput.value = "";
-    return;
-  }
-
-  if (playerNameInput.value === "" || playerPositionInput.value === "") {
-    alert("Por favor insira os dados necessários");
-    return;
-  }
-
   const newPlayer = {
-    position: playerPosition,
-    name: playerName,
-    number: playerNumber === undefined ? 0 : playerNumber,
+    position: playerPositionInput.value,
+    name: playerNameInput.value,
+    number: Number(playerNumberInput.value),
   };
 
-  escalationArray.push(newPlayer);
+  const confirmNewPlayerCreation = confirm(
+    `Deseja criar o jogador: 
+    Nome: ${newPlayer.name} 
+    Número da camisa: ${newPlayer.number}
+    Posição: ${newPlayer.position}`
+  );
+
+  if (confirmNewPlayerCreation) {
+    escalationArray.push(newPlayer);
+
+    createEscalationUlList();
+
+    playerPositionInput.value = "";
+    playerNameInput.value = "";
+    playerNumberInput.value = "";
+  }
 
   createEscalationUlList();
 
-  playerNameInput.value = "";
   playerPositionInput.value = "";
+  playerNameInput.value = "";
+  playerNumberInput.value = "";
 };
 
 const removePlayer = () => {
-  const playerToDeleteByNumber = Number(
-    prompt("Qual o número da camisa do jogador que deseja remover?")
+  const playerNumberToRemove = Number(removePlayerInput.value);
+
+  const escalationWithoutDeletedPlayer = escalationArray.filter(
+    (player) => player.number !== playerNumberToRemove
   );
 
-  const newEscalationWithoutDeletedPlayer = escalationArray.findIndex(
-    (player) => player.number === playerToDeleteByNumber
+  const confirmRemovePlayer = confirm(
+    `Tem certeza que deseja remover o jogador de camisa número ${playerNumberToRemove}?`
   );
 
-  console.log(newEscalationWithoutDeletedPlayer);
+  if (confirmRemovePlayer) {
+    escalationArray = escalationWithoutDeletedPlayer;
+    createEscalationUlList();
+    removePlayerInput.value = "";
+  }
 
-  createEscalationUlList();
+  removePlayerInput.value = "";
 };
+
+createEscalationUlList();
