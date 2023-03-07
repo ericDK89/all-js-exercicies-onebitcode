@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 11</title>
+  </head>
+  <body>
+    <h1>Exercício 11</h1>
+
+    <label for="player-position">Posição do jogador:</label>
+    <input type="text" name="player-position" id="player-position" required />
+
+    <br />
+
+    <label for="player-name">Nome do jogador:</label>
+    <input type="text" name="player-name" id="player-name" required />
+
+    <br />
+
+    <label for="player-number">Número da camisa do jogador:</label>
+    <input
+      type="number"
+      name="player-number"
+      id="player-number"
+      min="0"
+      max="999"
+      required
+    />
+
+    <br />
+
+    <button
+      type="button"
+      id="create-new-player-btn"
+      onclick="createNewPlayer()"
+    >
+      Escalar
+    </button>
+
+    <button id="remove-player-btn" type="button" onclick="removePlayer()">
+      Remover jogador
+    </button>
+
+    <br />
+
+    <ul id="escalation-list"></ul>
+
+    <script src="script.js"></script>
+  </body>
+</html>
