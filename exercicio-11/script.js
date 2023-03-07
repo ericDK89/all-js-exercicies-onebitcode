@@ -30,6 +30,11 @@ const createEscalationUlList = () => {
   `;
     })
     .join("");
+
+  playerPositionInput.value = "";
+  playerNameInput.value = "";
+  playerNumberInput.value = "";
+  removePlayerInput.value = "";
 };
 
 const createNewPlayer = () => {
@@ -50,17 +55,7 @@ const createNewPlayer = () => {
     escalationArray.push(newPlayer);
 
     createEscalationUlList();
-
-    playerPositionInput.value = "";
-    playerNameInput.value = "";
-    playerNumberInput.value = "";
   }
-
-  createEscalationUlList();
-
-  playerPositionInput.value = "";
-  playerNameInput.value = "";
-  playerNumberInput.value = "";
 };
 
 const removePlayer = () => {
@@ -77,10 +72,7 @@ const removePlayer = () => {
   if (confirmRemovePlayer) {
     escalationArray = escalationWithoutDeletedPlayer;
     createEscalationUlList();
-    removePlayerInput.value = "";
   }
-
-  removePlayerInput.value = "";
 };
 
 createEscalationUlList();
