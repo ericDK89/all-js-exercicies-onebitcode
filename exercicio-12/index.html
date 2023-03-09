@@ -15,33 +15,16 @@
     <h2>Cadastro de Devs</h2>
 
     <form id="create-dev-form" onsubmit="createNewTech">
-      <button type="button" id="add-tech-btn" onclick="addNewLine()">
-        Adicionar nova tecnologia
-      </button>
+      <button type="button" id="add-tech-btn">Adicionar nova tecnologia</button>
 
       <br />
       <br />
 
-      <div id="new-dev-infos">
-        <label for="tech-name">Nome da tecnologia:</label>
-        <input type="text" id="tech-name" name="tech-name" />
-
-        <input type="radio" value="0-2" id="0-2" name="time-years" />
-        <label>0-2 anos</label>
-
-        <input type="radio" value="3-4" id="3-4" name="time-years" />
-        <label>3-4 anos</label>
-
-        <input type="radio" value="5" id="5" name="time-years" />
-        <label>5+ anos</label>
-
-        <button type="button" id="remove-tech-btn">Remover tecnologia</button>
-
-        <br />
-      </div>
+      <ul id="new-dev-infos"></ul>
     </form>
 
     <main>
+      <h2>Lista de Devs</h2>
       <ul id="all-dev"></ul>
     </main>
 
