@@ -14,18 +14,26 @@
 
     <h2>Cadastro de Devs</h2>
 
-    <form id="create-dev-form" onsubmit="createNewTech">
+    <form id="create-dev-form">
+      <label for="fullname-input">Nome completo: </label>
+      <input type="text" name="fullname-input" id="fullname-input" />
+
+      <br />
+      <br />
+
       <button type="button" id="add-tech-btn">Adicionar nova tecnologia</button>
 
       <br />
       <br />
 
       <ul id="new-dev-infos"></ul>
+
+      <button type="submit">Cadastrar tecnologia(s)</button>
     </form>
 
     <main>
       <h2>Lista de Devs</h2>
-      <ul id="all-dev"></ul>
+      <ul id="all-devs"></ul>
     </main>
 
     <script src="script.js"></script>

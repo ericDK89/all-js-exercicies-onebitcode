@@ -27,111 +27,134 @@ const allDevs = [
   },
 ];
 
-const allDevsList = document.getElementById("all-dev");
+const allDevsList = document.getElementById("all-devs");
 
-const showAllDevs = () => {
+const insertListHTML = () => {
   allDevsList.innerHTML = `
   ${allDevs
     .map((dev) => {
       return `
-    <li>
-      <p>Nome do desenvolvedor: ${dev.name}</p>
-      <span>Tecnologias:</span>
-      ${dev.techs
-        .map((tech) => {
-          return `<span>${tech.name} (${tech.time} anos)</span>`;
-        })
-        .join(", ")}
-    </li>
+      <li>
+        <span style="display: block">Nome do desenvolvedor: ${dev.name}</span>
+        ${dev.techs
+          .map((tech) => {
+            return `
+            <span>Nome da tecnologia: ${tech.name} (${tech.time} anos).</span>
+          `;
+          })
+          .join("")}
+      </li>
+      <br/>
     `;
     })
     .join("")}
-  `;
+`;
 };
 
-showAllDevs();
+insertListHTML();
 
-const createLabel = (htmlFor, text) => {
+const createLabel = (text, htmlFor) => {
   const newLabel = document.createElement("label");
+  newLabel.innerText = text;
   newLabel.for = htmlFor;
-  newLabel.innerHTML = text;
-
   return newLabel;
 };
 
-const createInput = (type, value, id, name) => {
+const createInput = (id, value, name, type) => {
   const newInput = document.createElement("input");
+  newInput.id = id;
+  newInput.name = name;
   newInput.type = type;
   newInput.value = value;
-  newInput.name = name;
-  newInput.id = id;
-
   return newInput;
 };
 
+const creteDevForm = document.getElementById("create-dev-form");
 const addTechBtn = document.getElementById("add-tech-btn");
-const ulTechInfos = document.getElementById("new-dev-infos");
 let rows = 0;
 
 addTechBtn.addEventListener("click", () => {
+  const newDevInfos = document.getElementById("new-dev-infos");
+
   const newRow = document.createElement("li");
-  newRow.id = `add-tech-row-${newRow}`;
+  newRow.id = `new-row-${rows}`;
+  newRow.className = "new-rows";
+  rows++;
 
-  const techNameLabel = createLabel("tech-name", "Nome da tecnologia: ");
-  const techNameInput = createInput("text", null, "tech-name", "tech-name");
+  const techNameLabel = createLabel("Nome da tecnologia", `tech-${rows}`);
+  techNameLabel.style = "margin-right: 10px";
+  const techNameInput = createInput(`tech-${rows}`, null, "tech-name", "text");
 
-  const experienceSpan = document.createElement("span");
-  experienceSpan.innerText = " Experiência: ";
+  const techsLabelsTime = createLabel("Experiência: ", null);
+  techsLabelsTime.style = "margin-left: 10px";
 
-  const expInput1 = createInput("radio", "0-2", `0-2-${rows}`, `time-${rows}`);
-  const expLabel1 = createLabel("0-2", "0-2 anos");
+  const techTimeInput1 = createInput(`${rows}1`, "0-2", `time${rows}`, "radio");
+  const techTimeLabel1 = createLabel("0-2 anos", null);
 
-  const expInput2 = createInput("radio", "3-4", `3-4-${rows}`, `time-${rows}`);
-  const expLabel2 = createLabel("3-4", "3-4 anos");
+  const techTimeInput2 = createInput(`${rows}2`, "3-4", `time${rows}`, "radio");
+  const techTimeLabel2 = createLabel("3-4 anos", null);
 
-  const expInput3 = createInput("radio", "5+", `5+-${rows}`, `time-${rows}`);
-  const expLabel3 = createLabel("5+", "5+ anos");
+  const techTimeInput3 = createInput(`${rows}3`, "5+", `time${rows}`, "radio");
+  const techTimeLabel3 = createLabel("5+ anos", null);
 
-  const removeTechBtn = document.createElement("button");
-  removeTechBtn.type = "button";
-  removeTechBtn.innerText = "Remover tecnologia";
-  removeTechBtn.style = "margin-left: 10px";
+  const removeRowBtn = document.createElement("button");
+  removeRowBtn.type = "button";
+  removeRowBtn.id = `remove-row-btn-${rows}`;
+  removeRowBtn.innerText = "Remover";
+  removeRowBtn.style = "margin-left: 10px";
+
+  removeRowBtn.addEventListener("click", () => {
+    newDevInfos.removeChild(newRow);
+  });
 
   newRow.append(
     techNameLabel,
     techNameInput,
-    experienceSpan,
-    expInput1,
-    expLabel1,
-    expInput2,
-    expLabel2,
-    expInput3,
-    expLabel3,
-    removeTechBtn
+    techsLabelsTime,
+    techTimeInput1,
+    techTimeLabel1,
+    techTimeInput2,
+    techTimeLabel2,
+    techTimeInput3,
+    techTimeLabel3,
+    removeRowBtn
   );
 
-  ulTechInfos.appendChild(newRow);
+  newDevInfos.appendChild(newRow);
+});
 
-  rows++;
+const newDevForm = document.getElementById("create-dev-form");
 
-  const newTechs = [];
+newDevForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-  newTechs.push();
+  let devFullName = document.getElementById("fullname-input").value;
+  let inputsRows = document.querySelectorAll(".new-rows");
 
-  allDevs.map((item) => {
-    item.techs.push();
+  let technologies = [];
+
+  inputsRows.forEach((row) => {
+    const techName = document.querySelector(
+      "#" + row.id + ' input[name="tech-name"]'
+    ).value;
+    const techTime = document.querySelector(
+      `#${row.id}` + ' input[type="radio"]:checked'
+    ).value;
+
+    technologies.push({ name: techName, time: techTime });
   });
 
   const newDev = {
-    name: techNameInput.value,
+    name: devFullName,
+    techs: technologies,
   };
 
   allDevs.push(newDev);
 
-  showAllDevs();
-
-  removeTechBtn.addEventListener("click", () => {
-    ulTechInfos.removeChild(newRow);
-    showAllDevs();
+  devFullName = "";
+  inputsRows.forEach((row) => {
+    row.remove;
   });
+
+  insertListHTML();
 });
