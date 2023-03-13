@@ -20,61 +20,60 @@ const allowedKeys = [
 ];
 
 const inputCalc = document.getElementById("input-calc");
-const allBtnKeys = document.querySelectorAll(".char-btn");
+const allKeys = document.querySelectorAll(".char-btn");
 const outputInput = document.getElementById("output-result");
-const clearButton = document.getElementById("clear-btn");
-const equalButton = document.getElementById("equal-btn");
-const copyBtn = document.getElementById("copy-btn");
-const body = document.getElementById("body");
+const copyInput = document.getElementById("copy-btn");
 const switchThemeBtn = document.getElementById("switch-theme-btn");
+const body = document.getElementById("body");
+
+allKeys.forEach((key) => {
+  key.addEventListener("click", () => {
+    if (key.dataset.value !== "=") {
+      inputCalc.value += key.dataset.value;
+    }
+
+    if (key.dataset.value === "C") {
+      inputCalc.value = "";
+    }
+
+    if (key.dataset.value === "=") {
+      calculate();
+    }
+  });
+});
 
 inputCalc.addEventListener("keydown", (e) => {
   e.preventDefault();
 
   if (allowedKeys.includes(e.key)) {
     inputCalc.value += e.key;
-    return;
   }
 
   if (e.key === "Backspace") {
     inputCalc.value = inputCalc.value.slice(0, -1);
-    return;
   }
 
   if (e.key === "Enter") {
-    calculateResult();
+    calculate();
   }
 });
 
-allBtnKeys.forEach((key) => {
-  key.addEventListener("click", () => {
-    if (key.dataset.value !== "=") {
-      inputCalc.value += key.dataset.value;
-    }
-  });
-});
-
-const calculateResult = () => {
+const calculate = () => {
   outputInput.value = "Error";
   outputInput.classList.add("error");
 
   const result = eval(inputCalc.value);
+  outputInput.value = result;
   outputInput.classList.remove("error");
-  return (outputInput.value = result);
 };
 
-clearButton.addEventListener("click", () => {
-  inputCalc.value = "";
-  inputCalc.focus();
-});
-
-equalButton.addEventListener("click", () => {
-  calculateResult();
-});
-
-copyBtn.addEventListener("click", () => {
+copyInput.addEventListener("click", () => {
   navigator.clipboard.writeText(outputInput.value);
-  alert("Copiado para área de transferência");
+  copyInput.innerText = "Copied!";
+
+  setTimeout(() => {
+    copyInput.innerText = "Copy";
+  }, 3500);
 });
 
 switchThemeBtn.addEventListener("click", () => {
