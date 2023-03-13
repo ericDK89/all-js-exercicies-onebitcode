@@ -128,7 +128,7 @@ const newDevForm = document.getElementById("create-dev-form");
 newDevForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let devFullName = document.getElementById("fullname-input").value;
+  const devFullName = document.getElementById("fullname-input");
   let inputsRows = document.querySelectorAll(".new-rows");
 
   let technologies = [];
@@ -145,13 +145,13 @@ newDevForm.addEventListener("submit", (e) => {
   });
 
   const newDev = {
-    name: devFullName,
+    name: devFullName.value,
     techs: technologies,
   };
 
   allDevs.push(newDev);
 
-  devFullName = "";
+  devFullName.value = "";
   inputsRows.forEach((row) => {
     row.remove;
   });

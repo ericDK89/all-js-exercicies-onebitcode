@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Calc.js</title>
+  </head>
+  <body class="body-dark-theme" id="body">
+    <div class="container">
+      <header class="header-calc">
+        <h1 class="head-title">Calc.js</h1>
+        <button type="button" class="switch-theme-btn" id="switch-theme-btn">
+          Switch Theme Dark/Light
+        </button>
+      </header>
+
+      <input type="text" class="input-calc" id="input-calc" name="input-calc" />
+
+      <main class="main-calc">
+        <button type="button" data-value="C" class="char-btn" id="clear-btn">
+          C
+        </button>
+        <button type="button" data-value=" ( " class="char-btn">(</button>
+        <button type="button" data-value=" ) " class="char-btn">)</button>
+        <button type="button" data-value=" / " class="char-btn">/</button>
+        <button type="button" data-value="7" class="char-btn">7</button>
+        <button type="button" data-value="8" class="char-btn">8</button>
+        <button type="button" data-value="9" class="char-btn">9</button>
+        <button type="button" data-value=" * " class="char-btn">*</button>
+        <button type="button" data-value="4" class="char-btn">4</button>
+        <button type="button" data-value="5" class="char-btn">5</button>
+        <button type="button" data-value="6" class="char-btn">6</button>
+        <button type="button" data-value=" - " class="char-btn">-</button>
+        <button type="button" data-value="1" class="char-btn">1</button>
+        <button type="button" data-value="2" class="char-btn">2</button>
+        <button type="button" data-value="3" class="char-btn">3</button>
+        <button type="button" data-value=" + " class="char-btn">+</button>
+        <button type="button" data-value="0" class="char-btn">0</button>
+        <button type="button" data-value="." class="char-btn">.</button>
+        <button type="button" data-value=" % " class="char-btn">mod</button>
+        <button type="button" data-value="=" class="char-btn" id="equal-btn">
+          =
+        </button>
+      </main>
+
+      <div class="div-calc">
+        <button type="button" class="copy-btn" id="copy-btn">Copy</button>
+        <input
+          type="text"
+          disabled
+          class="output-result"
+          id="output-result"
+          name="output-result"
+        />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
