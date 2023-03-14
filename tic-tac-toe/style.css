@@ -14,11 +14,44 @@ h1 {
   margin: 2.5rem 0;
 }
 
+.name-and-reset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+
+  max-width: 45rem;
+}
+
+.name-and-reset .player-name {
+  text-align: center;
+}
+
+.name-and-reset .reset-btn {
+  padding: 0.75rem 0.25rem;
+
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: aqua;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.5s;
+}
+
+.name-and-reset .reset-btn:hover {
+  filter: brightness(80%);
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 
   max-width: 45rem;
 }
