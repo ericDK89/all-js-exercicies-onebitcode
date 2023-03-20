@@ -1,3 +1,5 @@
+import { switchTheme } from "./switch-theme.js";
+
 const allowedKeys = [
   "0",
   "1",
@@ -24,7 +26,6 @@ const allKeys = document.querySelectorAll(".char-btn");
 const outputInput = document.getElementById("output-result");
 const copyInput = document.getElementById("copy-btn");
 const switchThemeBtn = document.getElementById("switch-theme-btn");
-const body = document.getElementById("body");
 
 allKeys.forEach((key) => {
   key.addEventListener("click", () => {
@@ -76,12 +77,4 @@ copyInput.addEventListener("click", () => {
   }, 3500);
 });
 
-switchThemeBtn.addEventListener("click", () => {
-  if (body.className === "body-dark-theme") {
-    body.classList.add("body-light-theme");
-    body.classList.remove("body-dark-theme");
-  } else {
-    body.classList.add("body-dark-theme");
-    body.classList.remove("body-light-theme");
-  }
-});
+switchThemeBtn.addEventListener("click", switchTheme);
