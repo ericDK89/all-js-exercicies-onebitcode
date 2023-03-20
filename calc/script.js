@@ -1,30 +1,9 @@
 import { switchTheme } from "./switch-theme.js";
+import { calculate, inputCalc } from "./calculate.js";
+import { copyInputFunction, copyInput } from "./copy.js";
+import { allowedKeys } from "./allowed-keys.js";
 
-const allowedKeys = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  " / ",
-  " * ",
-  " + ",
-  " - ",
-  ".",
-  "(",
-  ")",
-  " % ",
-];
-
-const inputCalc = document.getElementById("input-calc");
 const allKeys = document.querySelectorAll(".char-btn");
-const outputInput = document.getElementById("output-result");
-const copyInput = document.getElementById("copy-btn");
 const switchThemeBtn = document.getElementById("switch-theme-btn");
 
 allKeys.forEach((key) => {
@@ -59,22 +38,6 @@ inputCalc.addEventListener("keydown", (e) => {
   }
 });
 
-const calculate = () => {
-  outputInput.value = "Error";
-  outputInput.classList.add("error");
-
-  const result = eval(inputCalc.value);
-  outputInput.value = result;
-  outputInput.classList.remove("error");
-};
-
-copyInput.addEventListener("click", () => {
-  navigator.clipboard.writeText(outputInput.value);
-  copyInput.innerText = "Copied!";
-
-  setTimeout(() => {
-    copyInput.innerText = "Copy";
-  }, 3500);
-});
+copyInput.addEventListener("click", copyInputFunction);
 
 switchThemeBtn.addEventListener("click", switchTheme);
