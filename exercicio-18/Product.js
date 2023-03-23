@@ -22,11 +22,8 @@ class Product {
   }
 }
 
-const newProduct = new Product("Copo", "Carregar líquidos", 10);
+const newProduct = new Product("Copo", "Carregar líquidos", 80);
 
-newProduct.addToStock(5);
-
-newProduct.calculateDiscount(0);
-
+newProduct.addToStock(80);
 console.log(newProduct);
-console.log(newProduct.calculateDiscount(90));
+console.log(newProduct.calculateDiscount(10));
