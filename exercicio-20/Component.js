@@ -1,13 +1,15 @@
 export class Component {
-  #domRef = null;
+  #element = null;
 
-  constructor() {
-    this.component = null;
+  constructor(tag, parent, ...options) {
+    this.tag = tag;
+    this.parent = parent;
+    this.options = options;
   }
 
   build(component, className, id) {
-    const newComponent = document.createElement(component);
-    this.component = newComponent;
+    this.#element = document.createElement(component);
+    Object.assign(this.#element, this.options);
     this.component.className = className;
     this.component.id = id;
   }
