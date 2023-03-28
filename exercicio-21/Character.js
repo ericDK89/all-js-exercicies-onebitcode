@@ -8,7 +8,8 @@ class Character {
 
   attack(target) {
     const damage = this.atk - target.def;
-    const result = target.hp - 1 * damage;
+    const result = target.hp - damage;
+    target.hp = result;
     console.log(result);
   }
 }

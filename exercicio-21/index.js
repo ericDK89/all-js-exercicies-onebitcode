@@ -1,21 +1,22 @@
-const Character = require("./Character.js");
 const Mage = require("./Mage.js");
 const Thief = require("./Thief.js");
 const Warrior = require("./Warrior.js");
 
-const newCharacter = new Character("Eric", 100, 25, 30);
-const newThief = new Thief("Hobbit", 50, 70, 15);
-const newMage = new Mage("Harry", 75, 30, 40, 80);
-const newWarrior = new Warrior("Kratos", 150, 50, 80, 30, "atk");
+const beatrice = new Thief("Beatrice", 140, 22, 8);
+const arthur = new Mage("Arthur", 90, 4, 2, 14);
+const cain = new Warrior("Cain", 200, 14, 12, 4);
 
-console.log(newCharacter);
-console.log(newThief);
-console.log(newMage);
-console.log(newWarrior);
+console.table({ beatrice, arthur, cain });
 
-newThief.attack(newCharacter);
-newMage.attack(newCharacter);
-newMage.heal(newCharacter);
-console.log(newWarrior);
+cain.changePosition();
+arthur.attack(cain);
+beatrice.attack(arthur);
 
-newMage.attack(newWarrior);
+console.table({ beatrice, arthur, cain });
+
+cain.changePosition();
+cain.attack(arthur);
+arthur.heal(arthur);
+beatrice.attack(cain);
+
+console.table({ beatrice, arthur, cain });

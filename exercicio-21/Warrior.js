@@ -1,18 +1,16 @@
 const Character = require("./Character.js");
 
 class Warrior extends Character {
-  constructor(name, hp, atk, def, shield, position) {
+  constructor(name, hp, atk, def, shield) {
     super(name, hp, atk, def);
     this.shield = shield;
-    this.position = position;
+    this.position = "atk";
   }
 
   attack(target) {
     if (this.position === "atk") {
-      const damage = this.atk - target.def;
-      const result = target.hp - damage;
-      target.hp = result;
-      console.log(`${target.name} HP: ${result}`);
+      super.attack(target);
+      console.log(`${target.name} HP: ${target.hp}`);
     } else {
       console.log("Warrior on def position, can't attack");
     }
